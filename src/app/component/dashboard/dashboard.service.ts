@@ -14,7 +14,12 @@ export class DashboardService {
   }
 
   getService2(param: any) : Observable<any> {
-    return this.httpClientService.put('registrationEntity',param);
+    return this.httpClientService.put('registrationEntity', 'data',{
+      pathParamameters : {
+        custId : '1234',
+        orgId: 'abcd345'
+      }
+      });
   }
 
   getService3(): Observable<any> {

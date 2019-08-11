@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { rootRenderNodes } from '@angular/core/src/view';
 import { ApiConfig } from './core.config';
 import { environment } from '../../environments/environment';
 
@@ -18,31 +17,30 @@ export class HttpClientService {
         this.apiConfig = ApiConfig;
     }
 
-    get(urlName: any, options?) {
-        return this.httpClient.get(this.getFullUrl(urlName));
+    get(urlName: any, options?: any) {
+        return this.httpClient.get(this.getFullUrl(urlName, options));
     }
 
-    put(urlName: any, options?) {
-        return this.httpClient.put(this.getFullUrl(urlName, options), options);
+    put(urlName: any, data: any, options?: any) {
+        return this.httpClient.put(this.getFullUrl(urlName, options), data);
     }
 
-    private getFullUrl(urlname: any, options?) {
+    private getFullUrl(urlname: any, options?: any) {
         const baseUrl = environment.baseUrl;
         const endpoint = this.buildUrlWithParams(urlname,options);
         return baseUrl + endpoint;
     }
 
-    private buildUrlWithParams(urlName: any, options?) {
+    private buildUrlWithParams(urlName: any, options?: any) {
         const endPoint = this.apiConfig.reqName[urlName].endPoint;
         if(options) {
-            let dataToReplace = endPoint.split(':')[1];
-            if(dataToReplace.indexOf('/') >= -1){
-                dataToReplace = dataToReplace.split('/')[0];
-            }
-            else {
-                dataToReplace = dataToReplace;
-            }
-            return endPoint.replace(dataToReplace,options);
+            const path = endPoint.split('/');
+            const pathArr =[];
+            const pathParams = options && options['pathParamameters'] || {};
+            path.forEach(element => {
+                pathArr.push(element[0] === ":" ? pathParams[element.substring(1)] : element);
+            });
+            return pathArr.join('/');
         }
         else {
             return endPoint;

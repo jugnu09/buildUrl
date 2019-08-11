@@ -4,7 +4,7 @@ export const ApiConfig = {
             endPoint : '/core/dashboard/data'
         },
         registrationEntity: {
-            endPoint: '/core/reg/:data/keys'
+            endPoint: '/core/reg/:custId/keys/:orgId'
         }
     }
 };
