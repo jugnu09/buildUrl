@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://www.google.com'
+  adminBaseUrl: 'https://www.google.com/admin',
+  regBaseURl: 'https://www.google.com/reg'
 };
 
 /*

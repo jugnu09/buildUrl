@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiConfig } from './core.config';
+import { ApiConfig, ModuleMapper } from './core.config';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -26,7 +26,8 @@ export class HttpClientService {
     }
 
     private getFullUrl(urlname: any, options?: any) {
-        const baseUrl = environment.baseUrl;
+        const reqObj = this.apiConfig.reqName[urlname];
+        const baseUrl = environment[ModuleMapper[reqObj['module']]];
         const endpoint = this.buildUrlWithParams(urlname,options);
         return baseUrl + endpoint;
     }
