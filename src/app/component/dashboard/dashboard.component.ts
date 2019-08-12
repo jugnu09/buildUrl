@@ -21,11 +21,21 @@ export class DashboardComponent implements OnInit {
   }
 
   service2() {
-    this.dashboardService.getService2('123').subscribe();
+    const data = {
+      "first_name": "Ritesh",
+      "last_name": "Singh",
+      "email": "thakur.ritesh07@gmail.com"
+    }
+    this.dashboardService.getService2('1', data).subscribe();
   }
 
   service3() {
-
+    const data = {
+      "first_name": "Neha",
+      "last_name": "Singh",
+      "email": "thakur.ritesh07@gmail.com"
+    }
+    this.dashboardService.getService3(data).subscribe();
   }
   
 

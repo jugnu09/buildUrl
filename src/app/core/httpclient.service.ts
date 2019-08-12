@@ -25,6 +25,10 @@ export class HttpClientService {
         return this.httpClient.put(this.getFullUrl(urlName, options), data);
     }
 
+    post(urlName: any, data:any, options?:any) {
+        return this.httpClient.post(this.getFullUrl(urlName, options), data);
+    }
+
     private getFullUrl(urlname: any, options?: any) {
         const reqObj = this.apiConfig.reqName[urlname];
         const baseUrl = environment[ModuleMapper[reqObj['module']]];

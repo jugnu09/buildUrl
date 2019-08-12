@@ -10,19 +10,22 @@ export class DashboardService {
   constructor(private httpClientService : HttpClientService) { }
 
   getService1() : Observable<any>{
-    return this.httpClientService.get('dashboardEntity');
+    return this.httpClientService.get('dashboardEntity', {
+      pathParamameters : {
+        id : '1'
+      }
+    });
   }
 
-  getService2(param: any) : Observable<any> {
-    return this.httpClientService.put('registrationEntity', 'data',{
+  getService2(param: any, data: any) : Observable<any> {
+    return this.httpClientService.put('registrationEntity', data, {
       pathParamameters : {
-        custId : '1234',
-        orgId: 'abcd345'
+        id : param
       }
       });
   }
 
-  getService3(): Observable<any> {
-    return 
+  getService3(data: any): Observable<any> {
+    return this.httpClientService.post('dashboardEntityNew', data);
   }
 }

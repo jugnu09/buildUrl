@@ -11,11 +11,15 @@ export const ApiConfig = {
     reqName : {
         dashboardEntity : {
             module: ModuleName.CUST_REGISTRATION,
-            endPoint : '/core/dashboard/data'
+            endPoint : '/users/:id'
         },
         registrationEntity: {
             module: ModuleName.ADMIN_MODULE,
-            endPoint: '/core/:custId/keys/:orgId'
-        }
+            endPoint: '/users/:id'
+        },
+        dashboardEntityNew : {
+            module: ModuleName.CUST_REGISTRATION,
+            endPoint : '/users'
+        },
     }
 };
